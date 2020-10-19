@@ -72,10 +72,10 @@ def clear_line(line, arabic_letters, diacritic_classes):
 
 def calculate_der(original_file, target_file, arabic_letters, diacritic_classes, style, case_ending=True,
                   no_diacritic=True):
-    with open(original_file, 'r', encoding='utf-8') as file:
+    with open(original_file, 'r') as file:
         original_content = file.readlines()
 
-    with open(target_file, 'r', encoding='utf-8') as file:
+    with open(target_file, 'r') as file:
         target_content = file.readlines()
 
     assert (len(original_content) == len(target_content))
@@ -90,17 +90,15 @@ def calculate_der(original_file, target_file, arabic_letters, diacritic_classes,
         original_classes = get_diacritics_classes(original_line, case_ending, arabic_letters, diacritic_classes, style)
         target_classes = get_diacritics_classes(target_line, case_ending, arabic_letters, diacritic_classes, style)
 
-        # assert (len(original_classes) == len(target_classes))
+        assert (len(original_classes) == len(target_classes))
 
         for (original_class, target_class) in zip(original_classes, target_classes):
             if not no_diacritic and original_class == 0:
                 continue
             if original_class == -1 and target_class != -1:
-                # print('WOW!')
-                continue
+                print('WOW!')
             if original_class != -1 and target_class == -1:
-                # print('WOW!')
-                continue
+                print('WOW!')
             if original_class == -1 and target_class == -1:
                 continue
 
@@ -112,10 +110,10 @@ def calculate_der(original_file, target_file, arabic_letters, diacritic_classes,
 
 def calculate_wer(original_file, target_file, arabic_letters, diacritic_classes, style, case_ending=True,
                   no_diacritic=True):
-    with open(original_file, 'r', encoding='utf-8') as file:
+    with open(original_file, 'r') as file:
         original_content = file.readlines()
 
-    with open(target_file, 'r', encoding='utf-8') as file:
+    with open(target_file, 'r') as file:
         target_content = file.readlines()
 
     assert (len(original_content) == len(target_content))
@@ -130,14 +128,14 @@ def calculate_wer(original_file, target_file, arabic_letters, diacritic_classes,
         original_line = original_line.split()
         target_line = target_line.split()
 
-        # assert (len(original_line) == len(target_line))
+        assert (len(original_line) == len(target_line))
 
         for (original_word, target_word) in zip(original_line, target_line):
             original_classes = get_diacritics_classes(original_word, case_ending, arabic_letters, diacritic_classes,
                                                       style)
             target_classes = get_diacritics_classes(target_word, case_ending, arabic_letters, diacritic_classes, style)
 
-            # assert (len(original_classes) == len(target_classes))
+            assert (len(original_classes) == len(target_classes))
 
             if len(original_classes) == 0:
                 continue
@@ -157,10 +155,10 @@ def calculate_wer(original_file, target_file, arabic_letters, diacritic_classes,
 
 def calculate_ser(original_file, target_file, arabic_letters, diacritic_classes, style, case_ending=True,
                   no_diacritic=True):
-    with open(original_file, 'r', encoding='utf-8') as file:
+    with open(original_file, 'r') as file:
         original_content = file.readlines()
 
-    with open(target_file, 'r', encoding='utf-8') as file:
+    with open(target_file, 'r') as file:
         target_content = file.readlines()
 
     assert (len(original_content) == len(target_content))
@@ -175,7 +173,7 @@ def calculate_ser(original_file, target_file, arabic_letters, diacritic_classes,
         original_line = original_line.split()
         target_line = target_line.split()
 
-        # assert (len(original_line) == len(target_line))
+        assert (len(original_line) == len(target_line))
 
         equal_words = True
         for (original_word, target_word) in zip(original_line, target_line):
@@ -183,7 +181,7 @@ def calculate_ser(original_file, target_file, arabic_letters, diacritic_classes,
                                                       style)
             target_classes = get_diacritics_classes(target_word, case_ending, arabic_letters, diacritic_classes, style)
 
-            # assert (len(original_classes) == len(target_classes))
+            assert (len(original_classes) == len(target_classes))
 
             if len(original_classes) == 0:
                 continue
